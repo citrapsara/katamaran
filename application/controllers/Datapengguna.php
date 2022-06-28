@@ -30,32 +30,116 @@ class Datapengguna extends CI_Controller {
 			}
 
 			if ($aksi == 't') {
-				$p = "tambah";
-				$data['judul_web'] 	  = "Tambah Pengguna";
-			}elseif ($aksi == 'e') {
-				$p = "edit";
-				$data['judul_web'] 	  = "Edit Data Pengguna";
-				$data['pengguna'] = $this->Guzzle_model->getUserById($id);
-				if ($data['pengguna']['id']=='') {redirect('404');}
-			}
-			elseif ($aksi == 'h') {
-				$cek_data = $this->Guzzle_model->getUserById($id);
-				if (count($cek_data) != 0 AND $cek_data['role'] != 'superadmin') {
-					$this->Guzzle_model->deleteUser($id);
+				$nama = $this->input->post('nama');
+				$username = $this->input->post('username');
+				$password = $this->input->post('password');
+				$password2 = $this->input->post('password2');
+				
+				$pesan = '';
+				$simpan = 'y';
+
+				if ($simpan == 'y') {
+				$data = array(
+					'nama'		=> $nama,
+					'username'	=> $username,
+					'password'	=> $password,
+					'password2'	=> $password2
+				);
+
+				$this->Guzzle_model->createUser($data);
+					
 					$this->session->set_flashdata('msg',
 						'
 						<div class="alert alert-success alert-dismissible" role="alert">
-							 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								 <span aria-hidden="true">&times;</span>
-							 </button>
-							 <strong>Sukses!</strong> Berhasil dihapus.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<strong>Sukses!</strong> Berhasil disimpan.
 						</div>
-						<br>'
+					<br>'
 					);
-					redirect("datapengguna/v");
 				}else {
-					redirect('404');
+					$this->session->set_flashdata('msg',
+						'
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<strong>Gagal!</strong> '.$pesan.'.
+						</div>
+					<br>'
+					);
 				}
+				redirect('datapengguna/v');
+			}elseif ($aksi == 'e') {
+				$id_user = $this->input->post('id_user');
+				$cek_user = $this->Guzzle_model->getUserById($id_user);
+				if ($cek_user == '') {redirect('404');} else {
+
+				$nama = $this->input->post('nama');
+				$username = $this->input->post('username');
+				$password = $this->input->post('password');
+				$password2 = $this->input->post('password2');
+				
+				$pesan = '';
+				$simpan = 'y';
+				
+				if ($simpan == 'y') {
+				$data = array(
+					'nama'		=> $nama,
+					'username'	=> $username,
+					'password'	=> $password,
+					'password2'	=> $password2
+				);
+
+
+				$this->Guzzle_model->updateUser($id_user, $data);
+					
+					$this->session->set_flashdata('msg',
+						'
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<strong>Sukses!</strong> Berhasil disimpan.
+						</div>
+					<br>'
+					);
+				}else {
+					$this->session->set_flashdata('msg',
+						'
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<strong>Gagal!</strong> '.$pesan.'.
+						</div>
+					<br>'
+					);
+				}
+				redirect('datapengguna/v');
+				}
+			}
+			elseif ($aksi == 'h') {
+				$id_user = $this->input->post('id_user');
+				$cek_data = $this->Guzzle_model->getUserById($id_user);
+
+				if ($cek_data == null) {redirect('404');} else {
+					$this->Guzzle_model->deleteUser($id_user);
+				}
+				
+
+				$this->session->set_flashdata('msg',
+					'
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<strong>Sukses!</strong> Berhasil dihapus.
+					</div>
+					<br>'
+				);
+				redirect('datapengguna/v');
 			} else {
 				$p = "index";
 				$data['judul_web'] 	  = "Pengguna";

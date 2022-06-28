@@ -3,80 +3,102 @@ $link1 = strtolower($this->uri->segment(1));
 $link2 = strtolower($this->uri->segment(2));
 $link3 = strtolower($this->uri->segment(3));
 $link4 = strtolower($this->uri->segment(4));
+$no=1;
 ?>
-<!-- begin #content -->
-		<!-- <div id="content" class="content"> -->
-			<!-- begin breadcrumb -->
-			<ol class="breadcrumb pull-right">
-				<li><a href="dashboard.html">Dashboard</a></li>
-				<li class="active"><?php echo $judul_web; ?></li>
-			</ol>
-			<!-- end breadcrumb -->
-			<!-- begin page-header -->
-			<h1 class="page-header">Data <small><?php echo $judul_web; ?></small></h1>
-			<!-- end page-header -->
-
-			<!-- begin row -->
-			<div class="row">
-			    <!-- begin col-12 -->
-			    <div class="col-md-12">
-			        <!-- begin panel -->
-              <?php
-                echo $this->session->flashdata('msg');
-              ?>
-                    <div class="panel panel-inverse">
-                        <div class="panel-heading">
-                            <div class="panel-heading-btn">
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                            </div>
-                            <h4 class="panel-title"><?php echo $judul_web; ?></h4>
-                        </div>
-                        <div class="panel-body">
-                          <a href="<?php echo $link1; ?>/<?php echo $link2; ?>/t.html" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah <?php echo $judul_web; ?></a>
-                          <hr>
-													<div class="table-responsive">
-                            <table id="data-table" class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th width="1%">No.</th>
-                                        <th>Nama</th>
-                                        <th>Whatsapp</th>
-																				<th>Username</th>
-																				<th>Role</th>
-                                        <th width="10%">Opsi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                  $no=1;
-                                   foreach ($user_list as $baris):
-																		 	?>
-                                    <tr>
-                                        <td><b><?php echo $no++; ?>.</b></td>
-																				<td><?php echo $baris['nama']; ?></td>
-																				<td><?php echo $baris['whatsapp']; ?></td>
-                                        <td><?php echo $baris['username']; ?></td>
-																				<td><?php echo $baris['role']; ?></td>
-																				<td align="center">
-                                          <?php if ($baris['role']!='superadmin') : ?>
-                                            <a href="<?php echo $link1; ?>/<?php echo $link2; ?>/e/<?php echo hashids_encrypt($baris['id']); ?>" class="btn btn-success btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
-                                            <a href="<?php echo $link1; ?>/<?php echo $link2; ?>/h/<?php echo hashids_encrypt($baris['id']); ?>" class="btn btn-danger btn-xs" title="Hapus" onclick="return confirm('Anda yakin?');"><i class="fa fa-trash-o"></i></a>
-                                          <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                  <?php endforeach; ?>
-                                </tbody>
-                            </table>
-													</div>
-                        </div>
+<main class="main-content bgc-grey-100">
+  <div id="mainContent">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-7">
+          <h4 class="c-grey-900 mT-10">Data Pengguna</h4>
+        </div>
+        <div class="col-md-5 fc-rtl">
+          <button type="button" class="btn cur-p btn-success mT-10 mB-10" data-toggle="modal" data-target="#add_pengguna"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Pengguna Baru</button>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-md-12">
+        </div> -->
+        <div class="col-md-12">
+          <!-- <div class="bgc-white bd bdrs-3 p-20 mB-20"> -->
+            <!-- <h4 class="c-grey-900 mB-20">Bootstrap Data Table</h4> -->
+            <hr>
+            <table
+              id="dataTable"
+              class="table table-striped table-bordered"
+              cellspacing="0"
+              width="100%"
+            >
+              <thead class="thead-dark">
+                <tr>
+                  <th width="2%">No.</th>
+                  <th width="40%">Nama</th>
+                  <th width="22%">Username</th>
+                  <th width="18%">Level</th>
+                  <th width="18%">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($user_list as $row): ?>
+                <tr>
+                  <td><?php echo $no++; ?>.</td>
+                  <td><?php echo $row['nama']; ?></td>
+                  <td><?php echo $row['username']; ?></td>
+                  <td><?php echo $row['role']; ?></td>
+                  <td class="text-center">
+                    <div class="peers">
+                      <div class="peer">
+                        <a
+                          href=""
+                          class="td-n c-blue-500 cH-blue-500 fsz-md p-5"
+                          data-toggle="modal"
+                          data-target="#edit_pengguna<?php echo $row['id']; ?>"
+                          ><i class="ti-search"></i
+                        ></a>
+                      </div>
+                      <div class="peer">
+                        <a
+                          href=""
+                          class="td-n c-deep-purple-500 cH-blue-500 fsz-md p-5"
+                          data-toggle="modal"
+                          data-target="#edit_pengguna<?php echo $row['id']; ?>"
+                          ><i class="ti-pencil"></i
+                        ></a>
+                      </div>
+                      <div class="peer">
+                        <a
+                          href=""
+                          class="td-n c-red-500 cH-blue-500 fsz-md p-5"
+                          data-toggle="modal"
+                          data-target="#delete_pengguna<?php echo $row['id']; ?>"
+                          ><i class="ti-trash"></i
+                        ></a>
+                      </div>
                     </div>
-                    <!-- end panel -->
-                </div>
-                <!-- end col-12 -->
-            </div>
-            <!-- end row -->
-		</div>
-		<!-- end #content -->
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <!-- Add, Detail, Edit, Delete Pengguna  -->
+      <?php 
+        // Add Pengguna 
+        $this->load->view('datapengguna/add_pengguna');
+
+        // Detail Pengguna 
+        $this->load->view('datapengguna/detail_pengguna');  
+
+        //  Edit Pengguna 
+        $this->load->view('datapengguna/edit_pengguna'); 
+
+        //  Delete Pengguna 
+        $this->load->view('datapengguna/delete_pengguna');
+      ?>
+    </div>
+  </div>
+</main>
+
