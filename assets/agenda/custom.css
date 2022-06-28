@@ -20,3 +20,6 @@
   right: -24px;
   top: 65%;
 }
+.list-jadwal:hover {
+  background-color: rgba(235, 242, 247, 0.8);
+}

@@ -9,7 +9,7 @@
       <h5><?php echo $this->Mcrud->hari_id($row['tanggal']) . ', ' . $this->Mcrud->tgl_id($row['tanggal'], 'full'); ?></h5>
     </div>
     <?php $temp = $row['tanggal']; } ?>
-    <li class="bdB peers ai-c jc-sb fxw-nw">
+    <li class="bdB peers ai-c jc-sb fxw-nw list-jadwal">
       <a
         class="td-n p-20 peers fxw-nw mR-20 peer-greed c-grey-900 link-agenda"
         href="javascript:void(0);"
