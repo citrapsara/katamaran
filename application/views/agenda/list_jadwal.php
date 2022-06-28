@@ -50,7 +50,7 @@
               <!-- Button previous  -->
               <button
                 type="button"
-                class="mT-nv-50 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-success btn-list-left"
+                class="mT-nv-30 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-success btn-list-left"
                 onclick="location.href='<?php 
                   if($link3 == 'harian') {
                     if ($link4 == '') {
@@ -79,7 +79,7 @@
               <!-- Button tambah  -->
               <button
                 type="button"
-                class="mT-nv-50 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-warning btn-center"
+                class="mT-nv-30 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-warning btn-center"
                 data-toggle="modal"
                 data-target="#add_agenda"
               >
@@ -89,7 +89,7 @@
               <!-- Button next -->
               <button
                 type="button"
-                class="mT-nv-50 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-success btn-list-right"
+                class="mT-nv-30 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-success btn-list-right"
                 onclick="location.href='<?php 
                   if ($link3 == 'harian') {
                     if ($link4 == '') {

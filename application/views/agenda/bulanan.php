@@ -1,8 +1,14 @@
-<ul class="m-0 p-0 mT-20">
-    <?php if ($agenda != null):
-    //   $temp = "";
-      foreach ($agenda as $row):
-    //   if ($temp) : ?>
+<ul class="m-0 p-0 ">
+  <?php if ($agenda != null):
+      $temp = '1996-01-01'; ?>
+  <div class="bgc-blue-50 c-blue-500 p-10"></div>
+  <?php    foreach ($agenda as $row):
+        if ($temp != $row['tanggal']) {
+          ?>
+    <div class="bgc-blue-50 c-blue-500 pX-20 pT-15 pB-10">
+      <h5><?php echo $this->Mcrud->hari_id($row['tanggal']) . ', ' . $this->Mcrud->tgl_id($row['tanggal'], 'full'); ?></h5>
+    </div>
+    <?php $temp = $row['tanggal']; } ?>
     <li class="bdB peers ai-c jc-sb fxw-nw">
       <a
         class="td-n p-20 peers fxw-nw mR-20 peer-greed c-grey-900 link-agenda"
@@ -43,6 +49,7 @@
     </li>
     <?php endforeach;
     else : ?>
+      <div class="p-10"></div>
       <div class="p-20"><h6 class="ta-c fsz-sm">-- Belum ada agenda --</h6></div>
     <?php endif; ?>
   </ul>
