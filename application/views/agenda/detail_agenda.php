@@ -43,6 +43,13 @@
                   <th valign="top" width="1">:</th>
                   <td><?php echo $row['deskripsi']; ?></td>
                 </tr>
+                <?php foreach ($this->Mcrud->url_data_dukung($row['url_data_dukung']) as $key => $element): ?>
+                <tr>
+                  <th valign="top" width="160"><?php if($key == 0): ?>Data Dukung<?php endif; ?></th>
+                  <th valign="top" width="1"><?php if($key == 0): ?>:<?php endif; ?></th>
+                  <td><a href="<?php echo $element; ?>" target="blank"><?php echo $element; ?></a></td>
+                </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>

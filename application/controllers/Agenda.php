@@ -27,6 +27,14 @@ class Agenda extends CI_Controller {
 		date_default_timezone_set('Asia/Singapore');
 		$data['time_now'] = date('H:i');
 		$today = date('Y-m-d');
+
+		$lokasi = 'file/daduk';
+		$file_size = 1024 * 100; // 10 MB
+		$this->upload->initialize(array(
+			"upload_path"   => "./$lokasi",
+			"allowed_types" => "*",
+			"max_size" => "$file_size"
+		));
 		
 		if ($aksi == 't') {
 			$nama = $this->input->post('nama');
@@ -37,11 +45,42 @@ class Agenda extends CI_Controller {
 			$pakaian = $this->input->post('pakaian');
 			$deskripsi = $this->input->post('deskripsi');
 
-			
 			$tanggal_convert = date('Y-m-d', strtotime($tanggal));
-			
+
 			$pesan = '';
-			$simpan = 'y';
+
+			if (!is_dir($lokasi)) {
+				# jika tidak maka folder harus dibuat terlebih dahulu
+				mkdir($lokasi, 0777, $rekursif = true);
+			}
+
+			$count = count($_FILES['files']['name']);
+
+			for($i=0;$i<$count;$i++){
+			
+				if(!empty($_FILES['files']['name'][$i])){
+			
+				$_FILES['file']['name'] = $_FILES['files']['name'][$i];
+				$_FILES['file']['type'] = $_FILES['files']['type'][$i];
+				$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+				$_FILES['file']['error'] = $_FILES['files']['error'][$i];
+				$_FILES['file']['size'] = $_FILES['files']['size'][$i];
+  
+				if ( ! $this->upload->do_upload('file'))
+					{
+						$simpan = 'n';
+						$pesan  = htmlentities(strip_tags($this->upload->display_errors('<p>', '</p>')));
+					}
+					else
+					{
+						$gbr = $this->upload->data();
+						$filename = "$lokasi/".$gbr['file_name'];
+						$url_file[$i] = preg_replace('/ /', '_', $filename);
+						$simpan = 'y';
+					}
+				}
+		
+			}
 
 			if ($simpan == 'y') {
 			$data = array(
@@ -51,7 +90,8 @@ class Agenda extends CI_Controller {
 				'tempat'	=> $tempat,
 				'peserta'	=> $peserta,
 				'pakaian'	=> $pakaian,
-				'deskripsi'	=> $deskripsi
+				'deskripsi'	=> $deskripsi,
+				'url_data_dukung' => json_encode($url_file)
 			);
 
 			$this->Guzzle_model->createAgenda($data);
@@ -163,7 +203,6 @@ class Agenda extends CI_Controller {
 			}
 			
 			$data['agenda'] = $this->Guzzle_model->getAgendaByTanggal($data['header_hari']);
-
 		} elseif ($aksi == 'mingguan') {
 			$p = 'list_jadwal';
 

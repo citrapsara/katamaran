@@ -12,6 +12,9 @@
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
+          <?php
+                echo $this->session->flashdata('msg');
+              ?>
           <!-- Button harian, mingguan, bulanan  -->
           <div class="btn-group mr-2 mb-2" role="group" aria-label="Grup button list jadwal">
             <a type="button" class="btn btn-secondary <?php if ($link3 == 'harian') { echo 'active'; } ?>" href="<?php echo $link1; ?>/<?php echo $link2; ?>/harian">Harian</a>

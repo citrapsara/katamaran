@@ -129,6 +129,10 @@ class Mcrud extends CI_Model {
 		return $user['nama'];
 	}
 
+	public function url_data_dukung($array) {
+		return json_decode($array);
+	}
+
 	public function get_pengawas_name_by_id($id)
 	{
 		if ($id == 0) {

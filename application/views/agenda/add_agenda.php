@@ -3,7 +3,7 @@
       <div class="modal-content">
         <div class="bd p-15"><h5 class="m-0">Tambah Agenda Kegiatan</h5></div>
         <div class="modal-body">
-          <form method="POST" action="agenda/v/t">
+          <form method="POST" action="agenda/v/t" enctype="multipart/form-data">
             <div class="form-group">
               <label class="fw-500" for="nama">Nama Kegiatan</label>
               <input class="form-control border-grey" id="nama" name="nama" required />
@@ -74,6 +74,28 @@
                 required
               ></textarea>
             </div>
+            <div class="form-group">
+              <label class="fw-500" for="files">Upload File SK / SP / Nodin / Undangan / Paparan / data pendukung lainnya (Bisa upload lebih dari 1 file)</label>
+              <input class="form-control border-grey" id="files" type="file" name="files[]" multiple required />
+            </div>
+            <!-- <div class="field_wrapper"> -->
+              <!-- <div class="form-group"> -->
+                <!-- <label class="fw-500">Upload File SK / SP / Nodin / Undangan / Paparan / data pendukung lainnya</label> -->
+              <!-- </div> -->
+              <!-- <div class="form-group input-dinamis">
+                <div class="row">
+                  <div class="col-input-dinamis col-lg-10">
+                    <input type="file" name="url_file[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required>
+                  </div>
+                  <div class="col-input-dinamis col-lg-2">
+                    <button class="btn btn-success add-more" type="button">
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+              
             
               <div class="text-right">
               <button
@@ -100,4 +122,25 @@
 
 <script type="text/javascript">
     $('.clockpicker').clockpicker();
+
+  //   var addButton = $('.add-more'); //Add button selector
+  // var wrapper = $('.field_wrapper'); //Input field wrapper
+
+  // var fieldHTML = '<div class="form-group input-dinamis"><div class="row"><div class="col-input-dinamis col-lg-10"><input type="file" name="url_file[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required></div><div class="col-input-dinamis col-lg-2"><button class="btn btn-danger remove" type="button"><i class="fa fa-minus-circle"></i></button></div></div>'; //New input field html 
+
+  // // var x = 1; //Initial field counter is 1
+
+  // //Once add button is clicked
+  // $(addButton).click(function(){
+  //     //Check maximum number of input fields
+  //     // x++; //Increment field counter
+  //     $(wrapper).append(fieldHTML); //Add field html
+  // });
+  
+  // //Once remove button is clicked
+  // $(wrapper).on('click', '.remove', function(e){
+  //     e.preventDefault();
+  //     $(this).parents('.input-dinamis').remove(); //Remove field html
+  //     // x--; //Decrement field counter
+  // });
 </script>
