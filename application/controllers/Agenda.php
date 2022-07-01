@@ -19,6 +19,11 @@ class Agenda extends CI_Controller {
 		$ceks 	 = $this->session->userdata('username');
 		$id_user = $this->session->userdata('id_user');
 		$level 	 = $this->session->userdata('level');
+		$link1 = $this->uri->segment(1);
+		$link2 = $this->uri->segment(2);
+		$link3 = $this->uri->segment(3);
+		$link4 = $this->uri->segment(4);
+		$link5 = $this->uri->segment(5);
 
 		if(!isset($ceks)) {
 			redirect('web/login');
@@ -118,7 +123,7 @@ class Agenda extends CI_Controller {
 				 <br>'
 				);
 			}
-			redirect('dashboard');
+			redirect("agenda/v/harian/" . $tanggal_convert);
 
 		} elseif ($aksi == 'e') {
 			$id_agenda = $this->input->post('id_agenda');
@@ -172,12 +177,17 @@ class Agenda extends CI_Controller {
 				 <br>'
 				);
 			}
-			redirect('dashboard');
+			redirect("agenda/v/harian/" . $tanggal_convert);
 		} elseif ($aksi == 'h') {
 			$id_agenda = $this->input->post('id_agenda');
 			$cek_data = $this->Guzzle_model->getAgendaById($id_agenda);
 
 			if ($cek_data == null) {redirect('404');} else {
+				foreach ($this->Mcrud->url_data_dukung($cek_data['url_data_dukung']) as $row) {
+					if ($row != '') {
+						unlink($row);
+					}
+				}
 				$this->Guzzle_model->deleteAgenda($id_agenda);
 			}
 			
@@ -192,7 +202,7 @@ class Agenda extends CI_Controller {
 				</div>
 				<br>'
 			);
-			redirect('dashboard');
+			redirect("agenda/v/harian/" . $cek_data['tanggal']);
 		} elseif ($aksi == 'harian') {
 			$p = 'list_jadwal';
 
