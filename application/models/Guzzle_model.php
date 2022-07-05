@@ -158,6 +158,25 @@ class Guzzle_model extends CI_model {
         return $result;
     }
 
+     // Model Tesapi
+    public function getAllTesapi()
+    {
+        $response = $this->_client->request('GET', 'Tesapi');
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result;
+    }
+
+    public function createTesapi($data)
+    {
+        $response = $this->_client->request('POST', 'Tesapi/create', [
+            'json' => $data
+        ]);
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result;
+    }
+
+
+
     
 
     

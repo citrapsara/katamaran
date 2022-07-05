@@ -140,6 +140,13 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                 ><span class="title">Data Pengguna</span></a
               >
             </li>
+            <li class="nav-item">
+              <a class="sidebar-link" href="tesapi"
+                ><span class="icon-holder"
+                  ><i class="c-deep-purple-500 ti-user"></i> </span
+                ><span class="title">Tesapi</span></a
+              >
+            </li>
           </ul>
         </div>
       </div>
