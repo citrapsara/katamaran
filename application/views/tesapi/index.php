@@ -34,6 +34,8 @@
                                         <th width="1%">NO.</th>
                                         <th>NAMA</th>
                                         <th>TANGGAL / JAM</th>
+                                        <th>TANGGAL</th>
+                                        <th>WAKTU</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,6 +46,8 @@
                                         <td><?php echo $no++; ?>.</td>
 																				<td><?php echo ucwords($value['nama']); ?></td>
                                         <td><?php echo $value['tanggaljam']; ?></td>
+                                        <td><?php echo $value['tanggal']; ?></td>
+                                        <td><?php echo $value['jam']; ?></td>
                                     </tr>
                                   <?php endforeach; ?>
                                 </tbody>

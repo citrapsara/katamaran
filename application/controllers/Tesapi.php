@@ -44,13 +44,19 @@ class Tesapi extends CI_Controller {
 		if (isset($_POST['btnsimpan'])) {
 			$nama = htmlentities(strip_tags($this->input->post('nama')));
 			$tanggaljam = htmlentities(strip_tags($this->input->post('tanggaljam')));
+			$tanggal = $this->input->post('tanggal');
+			$jam = $this->input->post('jam');
+
+			$tanggal_convert = date('Y-m-d', strtotime($tanggal));
 
 			$simpan = 'y';
 
 			if ($simpan=='y') {
 				$data = array(
 					'nama'	=> $nama,
-					'tanggaljam'	=> $tanggaljam
+					'tanggaljam'	=> $tanggaljam,
+					'tanggal'	=> $tanggal_convert,
+					'jam'	=> $jam
 				);
 				$this->Guzzle_model->createTesapi($data);
 

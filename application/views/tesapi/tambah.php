@@ -36,6 +36,50 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+              <div class="col-md-6">
+                <label class="fw-500" for="tanggal">Tanggal</label>
+                <div class="timepicker-input input-icon form-group">
+                  <div class="input-group">
+                    <div
+                      class="icon-agenda bgc-white bd bdwR-0"
+                    >
+                      <i class="ti-calendar"></i>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control border-grey start-date"
+                      placeholder="Pilih tanggal"
+                      data-provide="datepicker"
+                      data-date-format="d-M-yyyy"
+                      name="tanggal"
+                      id="tanggal"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="fw-500" for="waktu">Jam</label>
+                <div class="clockpicker input-icon form-group" data-autoclose="true">
+                  <div class="input-group">
+                    <div
+                      class="icon-agenda bgc-white bd bdwR-0"
+                    >
+                      <i class="ti-time"></i>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control border-grey"
+                      placeholder="Pilih jam"
+                      name="jam"
+                      id="jam"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
                   <hr>
                   
                   <button type="submit" name="btnsimpan" class="btn btn-primary" style="float:right;">Simpan</button>
@@ -46,3 +90,7 @@
       </div>
     </div>
     <!-- /dashboard content -->
+
+    <script type="text/javascript">
+    $('.clockpicker').clockpicker();
+    </script>
