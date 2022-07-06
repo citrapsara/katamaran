@@ -76,7 +76,7 @@
             </div>
             <div class="form-group">
               <label class="fw-500" for="files">Upload File SK / SP / Nodin / Undangan / Paparan / data pendukung lainnya (Bisa upload lebih dari 1 file)</label>
-              <input class="form-control border-grey" id="files" type="file" name="files[]" multiple required />
+              <input class="form-control border-grey" id="files" type="file" name="files[]" multiple />
             </div>
             <!-- <div class="field_wrapper"> -->
               <!-- <div class="form-group"> -->
