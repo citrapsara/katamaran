@@ -41,13 +41,55 @@ class Tesapi extends CI_Controller {
 		date_default_timezone_set('Asia/Singapore');
 		$tgl = date('Y-m-d H:i:s');
 
+		$lokasi = 'file/daduk';
+		$this->upload->initialize(array(
+			"upload_path"   => "./$lokasi",
+			"allowed_types" => "*"
+		));
+
 		if (isset($_POST['btnsimpan'])) {
 			$nama = htmlentities(strip_tags($this->input->post('nama')));
 			$tanggaljam = htmlentities(strip_tags($this->input->post('tanggaljam')));
 			$tanggal = $this->input->post('tanggal');
 			$jam = $this->input->post('jam');
+			
 
 			$tanggal_convert = date('Y-m-d', strtotime($tanggal));
+
+			if ($_FILES['files']['name'][0] == null) {
+				$count = 0;
+			} else {
+				$count = count($_FILES['files']['name']);
+			}
+
+			if($count != 0) {
+				for($i=0;$i<$count;$i++){
+				
+					if(!empty($_FILES['files']['name'][$i])){
+				
+					$_FILES['file']['name'] = $_FILES['files']['name'][$i];
+					$_FILES['file']['type'] = $_FILES['files']['type'][$i];
+					$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+					$_FILES['file']['error'] = $_FILES['files']['error'][$i];
+					$_FILES['file']['size'] = $_FILES['files']['size'][$i];
+	
+					if ( ! $this->upload->do_upload('file'))
+						{
+							$simpan = 'n';
+							$pesan  = htmlentities(strip_tags($this->upload->display_errors('<p>', '</p>')));
+						}
+						else
+						{
+							$gbr = $this->upload->data();
+							$filename = "$lokasi/".$gbr['file_name'];
+							$url_file[$i] = preg_replace('/ /', '_', $filename);
+							$simpan = 'y';
+						}
+					}
+				}
+			} else {
+				$simpan = 'y';
+			}
 
 			$simpan = 'y';
 
@@ -56,7 +98,9 @@ class Tesapi extends CI_Controller {
 					'nama'	=> $nama,
 					'tanggaljam'	=> $tanggaljam,
 					'tanggal'	=> $tanggal_convert,
-					'jam'	=> $jam
+					'jam'	=> $jam,
+					'files' => json_encode($url_file)
+
 				);
 				$this->Guzzle_model->createTesapi($data);
 

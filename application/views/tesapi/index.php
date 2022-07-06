@@ -36,6 +36,7 @@
                                         <th>TANGGAL / JAM</th>
                                         <th>TANGGAL</th>
                                         <th>WAKTU</th>
+                                        <th>FILES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,6 +49,11 @@
                                         <td><?php echo $value['tanggaljam']; ?></td>
                                         <td><?php echo $value['tanggal']; ?></td>
                                         <td><?php echo $value['jam']; ?></td>
+                                        <td>
+                                          <?php foreach ($this->Mcrud->url_data_dukung($value['files']) as $key => $element): ?>
+                                            <a href="<?php echo $element; ?>" target="blank"><?php echo $element; ?></a>
+                                          <?php endforeach; ?>
+                                        </td>
                                     </tr>
                                   <?php endforeach; ?>
                                 </tbody>
