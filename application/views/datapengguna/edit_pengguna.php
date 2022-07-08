@@ -16,12 +16,21 @@
               <input class="form-control border-grey" id="username" name="username" value="<?php echo $row['username']; ?>" required />
             </div>
             <div class="form-group">
+              <label class="fw-500" for="role">Role</label>
+              <select class="form-control border-grey" id="role" name="role" value="<?php echo $row['role'];?>" required>
+                <option value="">- Pilih -</option>
+                <option value="pimti" <?php if($row['role'] == 'pimti'){ echo "selected";} ?>>Pimpinan Tinggi Pratama</option>
+                <option value="pelaksana" <?php if($row['role'] == 'pelaksana'){ echo "selected";} ?>>Pelaksana Kegiatan</option>
+                <option value="sekpim" <?php if($row['role'] == 'sekpim'){ echo "selected";} ?>>Sekretaris Pimpinan</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label class="fw-500" for="password">Password</label>
-              <input class="form-control border-grey" id="password" type="password" name="password" value="<?php echo $row['password']; ?>" required />
+              <input class="form-control border-grey" id="password" type="password" name="password" required />
             </div>
             <div class="form-group">
               <label class="fw-500" for="konfirmasi password">Konfirmasi Password</label>
-              <input class="form-control border-grey" id="password2" type="password" name="password2" value="<?php echo $row['password2']; ?>" required />
+              <input class="form-control border-grey" id="password2" type="password" name="password2"  required />
             </div>
             
               <div class="text-right">

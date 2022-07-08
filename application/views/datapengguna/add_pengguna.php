@@ -14,14 +14,12 @@
             </div>
             <div class="form-group">
               <label class="fw-500" for="role">Role</label>
-              <!-- <div class="col-lg-9"> -->
-                <select class="form-control border-grey" id="role" name="role" required>
-                  <option value="">- Pilih -</option>
-                  <option value="pimti">Pimpinan Tinggi Pratama</option>
-                  <option value="sekpim">Sekretaris Pimpinan</option>
-                  <option value="pelaksana">Pelaksana</option>
-                </select>
-              <!-- </div> -->
+              <select class="form-control border-grey" id="role" name="role" required>
+                <option value="">- Pilih -</option>
+                <option value="pimti">Pimpinan Tinggi Pratama</option>
+                <option value="pelaksana">Pelaksana Kegiatan</option>
+                <option value="sekpim">Sekretaris Pimpinan</option>
+              </select>
             </div>
             <div class="form-group">
               <label class="fw-500" for="password">Password</label>
@@ -52,8 +50,3 @@
     </div>
   </div>
     
-
-
-<script type="text/javascript">
-    $('.clockpicker').clockpicker();
-</script>
