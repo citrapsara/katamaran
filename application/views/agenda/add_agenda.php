@@ -8,31 +8,31 @@
               <label class="fw-500" for="nama">Nama Kegiatan</label>
               <input class="form-control border-grey" id="nama" name="nama" required />
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label class="fw-500" for="tanggal">Tanggal</label>
-                <div class="timepicker-input input-icon form-group">
-                  <div class="input-group">
-                    <div
-                      class="icon-agenda bgc-white bd bdwR-0"
-                    >
-                      <i class="ti-calendar"></i>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control border-grey start-date"
-                      placeholder="Pilih tanggal"
-                      data-provide="datepicker"
-                      data-date-format="d-M-yyyy"
-                      name="tanggal"
-                      id="tanggal"
-                      required
-                    />
+            <div class="form-group">
+              <label class="fw-500" for="tanggal">Tanggal</label>
+              <div class="timepicker-input input-icon form-group">
+                <div class="input-group">
+                  <div
+                    class="icon-agenda bgc-white bd bdwR-0"
+                  >
+                    <i class="ti-calendar"></i>
                   </div>
+                  <input
+                    type="text"
+                    class="form-control border-grey start-date"
+                    placeholder="Pilih tanggal"
+                    data-provide="datepicker"
+                    data-date-format="d-M-yyyy"
+                    name="tanggal"
+                    id="tanggal"
+                    required
+                  />
                 </div>
               </div>
+            </div>
+            <div class="row">
               <div class="col-md-6">
-                <label class="fw-500" for="waktu">Jam</label>
+                <label class="fw-500" for="jam_mulai">Jam Mulai</label>
                 <div class="clockpicker input-icon form-group" data-autoclose="true">
                   <div class="input-group">
                     <div
@@ -44,8 +44,28 @@
                       type="text"
                       class="form-control border-grey"
                       placeholder="Pilih jam"
-                      name="waktu"
-                      id="waktu"
+                      name="jam_mulai"
+                      id="jam_mulai"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="fw-500" for="jam_selesai">Jam Selesai</label>
+                <div class="clockpicker input-icon form-group" data-autoclose="true">
+                  <div class="input-group">
+                    <div
+                      class="icon-agenda bgc-white bd bdwR-0"
+                    >
+                      <i class="ti-time"></i>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control border-grey"
+                      placeholder="Pilih jam"
+                      name="jam_selesai"
+                      id="jam_selesai"
                       required
                     />
                   </div>
@@ -74,28 +94,17 @@
                 required
               ></textarea>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="fw-500" for="files">Upload File SK / SP / Nodin / Undangan / Paparan / data pendukung lainnya (Bisa upload lebih dari 1 file)</label>
               <input class="form-control border-grey" id="files" type="file" name="files[]" multiple />
-            </div>
-            <!-- <div class="field_wrapper"> -->
-              <!-- <div class="form-group"> -->
-                <!-- <label class="fw-500">Upload File SK / SP / Nodin / Undangan / Paparan / data pendukung lainnya</label> -->
-              <!-- </div> -->
-              <!-- <div class="form-group input-dinamis">
-                <div class="row">
-                  <div class="col-input-dinamis col-lg-10">
-                    <input type="file" name="url_file[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required>
-                  </div>
-                  <div class="col-input-dinamis col-lg-2">
-                    <button class="btn btn-success add-more" type="button">
-                      <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div> -->
-              
+            <div class="form-group">
+              <label class="fw-500">Upload File SK / SP / Nodin / Undangan / Paparan / data pendukung lainnya</label>
+              <button class="btn btn-success mB-10" id="add-more" type="button">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah file
+              </button>
+              <div id="auth-rows"></div>
+            </div>
             
               <div class="text-right">
               <button
@@ -121,26 +130,18 @@
 
 
 <script type="text/javascript">
-    $('.clockpicker').clockpicker();
+  $('.clockpicker').clockpicker();
 
-  //   var addButton = $('.add-more'); //Add button selector
-  // var wrapper = $('.field_wrapper'); //Input field wrapper
+  $("#add-more").click(function(e){
+        
+		var html3 = '<div class="form-group input-dinamis"><div class="row"><div class="col-input-dinamis col-lg-10"><input type="file" name="url_files[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required></div><div class="col-input-dinamis col-lg-2"><button class="btn btn-danger remove" type="button"><i class="fa fa-minus-circle"></i></button></div></div></div>';
+    
+    $('#auth-rows').append(html3);
+  });
 
-  // var fieldHTML = '<div class="form-group input-dinamis"><div class="row"><div class="col-input-dinamis col-lg-10"><input type="file" name="url_file[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required></div><div class="col-input-dinamis col-lg-2"><button class="btn btn-danger remove" type="button"><i class="fa fa-minus-circle"></i></button></div></div>'; //New input field html 
+  $('#auth-rows').on('click', '.remove', function(e){
+    e.preventDefault();
+    $(this).parents('.input-dinamis').remove(); 
+  });
 
-  // // var x = 1; //Initial field counter is 1
-
-  // //Once add button is clicked
-  // $(addButton).click(function(){
-  //     //Check maximum number of input fields
-  //     // x++; //Increment field counter
-  //     $(wrapper).append(fieldHTML); //Add field html
-  // });
-  
-  // //Once remove button is clicked
-  // $(wrapper).on('click', '.remove', function(e){
-  //     e.preventDefault();
-  //     $(this).parents('.input-dinamis').remove(); //Remove field html
-  //     // x--; //Decrement field counter
-  // });
 </script>

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Agenda extends CI_Controller {
 	public function index()
 	{
-		$ceks 	 = $this->session->userdata('username');
+		$ceks 	 = $this->session->userdata('token_katamaran');
 
 		if(!isset($ceks)) {
 			redirect('web/login');
@@ -16,7 +16,7 @@ class Agenda extends CI_Controller {
 
 	public function v($aksi='',$tanggal='',$tanggal2='')
 	{
-		$ceks 	 = $this->session->userdata('username');
+		$ceks 	 = $this->session->userdata('token_katamaran');
 		$id_user = $this->session->userdata('id_user');
 		$level 	 = $this->session->userdata('level');
 
@@ -37,7 +37,8 @@ class Agenda extends CI_Controller {
 		if ($aksi == 't') {
 			$nama = $this->input->post('nama');
 			$tanggal = $this->input->post('tanggal');
-			$waktu = $this->input->post('waktu');
+			$jam_mulai = $this->input->post('jam_mulai');
+			$jam_selesai = $this->input->post('jam_selesai');
 			$tempat = $this->input->post('tempat');
 			$peserta = $this->input->post('peserta');
 			$pakaian = $this->input->post('pakaian');
@@ -52,22 +53,22 @@ class Agenda extends CI_Controller {
 				mkdir($lokasi, 0777, $rekursif = true);
 			}
 
-			if ($_FILES['files']['name'][0] == null) {
+			if ($_FILES['url_files']['name'][0] == null) {
 				$count = 0;
 			} else {
-				$count = count($_FILES['files']['name']);
+				$count = count($_FILES['url_files']['name']);
 			}
 
 			if($count != 0) {
 				for($i=0;$i<$count;$i++){
 				
-					if(!empty($_FILES['files']['name'][$i])){
+					if(!empty($_FILES['url_files']['name'][$i])){
 				
-					$_FILES['file']['name'] = $_FILES['files']['name'][$i];
-					$_FILES['file']['type'] = $_FILES['files']['type'][$i];
-					$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
-					$_FILES['file']['error'] = $_FILES['files']['error'][$i];
-					$_FILES['file']['size'] = $_FILES['files']['size'][$i];
+					$_FILES['file']['name'] = $_FILES['url_files']['name'][$i];
+					$_FILES['file']['type'] = $_FILES['url_files']['type'][$i];
+					$_FILES['file']['tmp_name'] = $_FILES['url_files']['tmp_name'][$i];
+					$_FILES['file']['error'] = $_FILES['url_files']['error'][$i];
+					$_FILES['file']['size'] = $_FILES['url_files']['size'][$i];
 	
 					if ( ! $this->upload->do_upload('file'))
 						{
@@ -89,16 +90,17 @@ class Agenda extends CI_Controller {
 
 			if ($simpan == 'y') {
 				$data = array(
-					'id_user'	=> $id_user,
-					'nama'		=> $nama,
-					'tanggal'	=> $tanggal_convert,
-					'waktu'		=> $waktu,
-					'tempat'	=> $tempat,
-					'peserta'	=> $peserta,
-					'pakaian'	=> $pakaian,
-					'deskripsi'	=> $deskripsi,
+					'id_user'		=> $id_user,
+					'nama'			=> $nama,
+					'tanggal'		=> $tanggal_convert,
+					'jam_mulai'		=> $jam_mulai,
+					'jam_selesai'	=> $jam_selesai,
+					'tempat'		=> $tempat,
+					'peserta'		=> $peserta,
+					'pakaian'		=> $pakaian,
+					'deskripsi'		=> $deskripsi,
 					'url_data_dukung' => json_encode($url_file),
-					'status'	=> 'x'
+					'status'		=> 'x'
 				);
 
 				$this->Guzzle_model->createAgenda($data);
@@ -137,10 +139,48 @@ class Agenda extends CI_Controller {
 			$pakaian = $this->input->post('pakaian');
 			$deskripsi = $this->input->post('deskripsi');
 
-			
+			$data_lama = $this->Guzzle_model->getAgendaById($id_agenda);
+
 			$tanggal_convert = date('Y-m-d', strtotime($tanggal));
 			
 			$pesan = '';
+
+			echo '<pre>'; print_r($_FILES['url_files']['name']); exit;
+
+			if ($_FILES['files']['name'][0] == null) {
+				$count = 0;
+			} else {
+				$count = count($_FILES['files']['name']);
+			}
+
+			if($count != 0) {
+				for($i=0;$i<$count;$i++){
+				
+					if(!empty($_FILES['files']['name'][$i])){
+				
+					$_FILES['file']['name'] = $_FILES['files']['name'][$i];
+					$_FILES['file']['type'] = $_FILES['files']['type'][$i];
+					$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+					$_FILES['file']['error'] = $_FILES['files']['error'][$i];
+					$_FILES['file']['size'] = $_FILES['files']['size'][$i];
+	
+					if ( ! $this->upload->do_upload('file'))
+						{
+							$simpan = 'n';
+							$pesan  = htmlentities(strip_tags($this->upload->display_errors('<p>', '</p>')));
+						}
+						else
+						{
+							$gbr = $this->upload->data();
+							$filename = "$lokasi/".$gbr['file_name'];
+							$url_file[$i] = preg_replace('/ /', '_', $filename);
+							$simpan = 'y';
+						}
+					}
+				}
+			} else {
+				$simpan = 'y';
+			}
 			$simpan = 'y';
 			
 			if ($simpan == 'y') {

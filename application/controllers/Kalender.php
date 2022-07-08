@@ -5,7 +5,7 @@ class Kalender extends CI_Controller {
 
 	public function index()
 	{
-		$ceks = $this->session->userdata('username');
+		$ceks = $this->session->userdata('token_katamaran');
 		$id_user = $this->session->userdata('id_user');
 		if(!isset($ceks)) {
 			redirect('web/login');

@@ -5,7 +5,7 @@ class Users extends CI_Controller {
 
 	public function index()
 	{
-		$ceks = $this->session->userdata('username');
+		$ceks = $this->session->userdata('token_katamaran');
 		$id_user = $this->session->userdata('id_user');
 		if(!isset($ceks)) {
 			redirect('web/login');
@@ -16,7 +16,7 @@ class Users extends CI_Controller {
 
 	public function profile()
 	{
-		$ceks = $this->session->userdata('username');
+		$ceks = $this->session->userdata('token_katamaran');
 		$id_user = $this->session->userdata('id_user');
 		$level = $this->session->userdata('level');
 		if(!isset($ceks)) {
@@ -39,6 +39,7 @@ class Users extends CI_Controller {
 			$whatsapp	= htmlentities(strip_tags($this->input->post('whatsapp')));
 			$password  = htmlentities(strip_tags($this->input->post('password')));
 			$password2 = htmlentities(strip_tags($this->input->post('password2')));
+			$ceks_username = $this->session->userdata('username');
 
 			if ($username != $ceks) {
 				$cek_username = array_search($username, array_column($user_list, 'username', 'id'));

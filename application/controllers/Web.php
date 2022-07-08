@@ -6,7 +6,7 @@ class Web extends CI_Controller {
 
 	public function index()
 	{
-		$ceks = $this->session->userdata('username');
+		$ceks = $this->session->userdata('token_katamaran');
 		if(isset($ceks)) {
 			// $this->load->view('404_content');
 			redirect('dashboard');
@@ -17,7 +17,7 @@ class Web extends CI_Controller {
 
 	public function login()
 	{
-		$ceks = $this->session->userdata('username');
+		$ceks = $this->session->userdata('token_katamaran');
 		if(isset($ceks)) {
 			// $this->load->view('404_content');
 			redirect('dashboard');
@@ -80,7 +80,7 @@ class Web extends CI_Controller {
 						$this->session->set_userdata('nama', "$user_nama");
 						$this->session->set_userdata('id_user', "$userID");
 						$this->session->set_userdata('level', "$user_role");
-						$this->session->set_userdata('token', "$user_token");
+						$this->session->set_userdata('token_katamaran', "$user_token");
 
 						$this->session->set_userdata('jml_notif_bell', "0");
 
@@ -93,7 +93,7 @@ class Web extends CI_Controller {
 
 
 	public function logout() {
-     if ($this->session->has_userdata('username') and $this->session->has_userdata('id_user')) {
+     if ($this->session->has_userdata('token_katamaran') and $this->session->has_userdata('id_user')) {
          $this->session->sess_destroy();
 		}
 
