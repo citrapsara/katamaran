@@ -66,6 +66,27 @@ $sub_menu3 = strtolower($this->uri->segment(3));
         }
       }
     </style>
+
+      <!--tambahan css-->
+      <!--beginning of calendar-15 header-->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+      <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="assets/calendar-15/fonts/icomoon/style.css">
+
+      <link rel="stylesheet" href="assets/calendar-15/css/rome.css">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="assets/calendar-15/css/bootstrap.min.css">
+
+      <!-- Style -->
+      <link rel="stylesheet" href="assets/calendar-15/css/style.css">
+
+      <title>Kalender Laporan</title>
+      <!--end of calendar-15 header-->
+
+
     <link href="assets/agenda/style.css" rel="stylesheet" />
     <link href="assets/agenda/custom.css" rel="stylesheet" />
     <link href="node_modules/fullcalendar/main.css" rel="stylesheet" />
@@ -140,6 +161,13 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                 ><span class="title">Data Pengguna</span></a
               >
             </li>
+              <li class="nav-item">
+                  <a class="sidebar-link" href="laporan"
+                  ><span class="icon-holder"
+                      ><i class="c-brown-500 ti-book"></i> </span
+                      ><span class="title">Laporan</span></a
+                  >
+              </li>
           </ul>
         </div>
       </div>
