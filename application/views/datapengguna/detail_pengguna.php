@@ -28,11 +28,6 @@
                   <th valign="top" width="1">:</th>
                   <td><?php echo $row['password']; ?></td>
                 </tr>
-                <tr>
-                  <th valign="top">Konfirmasi Password</th>
-                  <th valign="top">:</th>
-                  <td><?php echo $row['password2']; ?></td>
-                </tr>
               </tbody>
             </table>
           </div>

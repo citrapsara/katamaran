@@ -21,7 +21,7 @@
         <div class="peer">
           <span class="fw-600"><?php echo $row['nama']; ?></span>
           <div class="c-grey-600">
-            <span class="c-grey-700"><?php echo $this->Mcrud->jam($row['waktu']); ?> - </span
+            <span class="c-grey-700"><?php echo $this->Mcrud->jam($row['jam_mulai']); ?> - </span
             ><i><?php echo $row['tempat'] ?></i>
           </div>
         </div></a

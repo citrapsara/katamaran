@@ -8,7 +8,7 @@ class Guzzle_model extends CI_model {
     public function __construct()
     {
         $userID = $this->session->userdata('id_user');
-        $token = $this->session->userdata('token');
+        $token = $this->session->userdata('token_katamaran');
 
         $this->_client = new Client([
             'base_uri' => 'localhost/katamaranapi/index.php/',
@@ -157,8 +157,4 @@ class Guzzle_model extends CI_model {
         $result = json_decode($response->getBody()->getContents(), true);
         return $result;
     }
-
-    
-
-    
 }

@@ -8,6 +8,9 @@ $no=1;
 <main class="main-content bgc-grey-100">
   <div id="mainContent">
     <div class="container-fluid">
+      <?php
+                echo $this->session->flashdata('msg');
+              ?>
       <div class="row">
         <div class="col-md-7">
           <h4 class="c-grey-900 mT-10">Data Pengguna</h4>
@@ -52,7 +55,7 @@ $no=1;
                           href=""
                           class="td-n c-blue-500 cH-blue-500 fsz-md p-5"
                           data-toggle="modal"
-                          data-target="#edit_pengguna<?php echo $row['id']; ?>"
+                          data-target="#detail_pengguna<?php echo $row['id']; ?>"
                           ><i class="ti-search"></i
                         ></a>
                       </div>
