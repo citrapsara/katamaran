@@ -18,7 +18,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
       name="viewport"
       content="width=device-width,initial-scale=1,shrink-to-fit=no"
     />
-    <title>Agenda - Kanwil Kemenkumham NTB</title>
+    <title>KATAMARAN - Kanwil Kemenkumham NTB</title>
     <style>
       #loader {
         transition: all 0.3s ease-in-out;
@@ -95,11 +95,11 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                   ><div class="peers ai-c fxw-nw">
                     <div class="peer">
                       <div class="logo">
-                        <img src="assets/agenda/assets/static/images/logo.png" alt="" />
+                        <img src="assets/agenda/assets/static/images/logo1.png" alt="" />
                       </div>
                     </div>
                     <div class="peer peer-greed">
-                      <h5 class="lh-1 mB-0 logo-text">Agenda</h5>
+                      <h5 class="lh-1 mB-0 logo-text">KATAMARAN</h5>
                     </div>
                   </div></a
                 >
@@ -157,7 +157,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
               </li>
             </ul>
             <ul class="nav-right">
-              <li class="notifications dropdown">
+              <!-- <li class="notifications dropdown">
                 <span class="counter bgc-red">3</span>
                 <a
                   href=""
@@ -182,7 +182,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                     ></span>
                   </li>
                 </ul>
-              </li>
+              </li> -->
               <li class="dropdown">
                 <a
                   href=""

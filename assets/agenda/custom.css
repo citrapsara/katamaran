@@ -23,3 +23,8 @@
 .list-jadwal:hover {
   background-color: rgba(235, 242, 247, 0.8);
 }
+.btn-close {
+  color: #f44336 !important;
+  cursor: pointer;
+  margin: 5px;
+}
