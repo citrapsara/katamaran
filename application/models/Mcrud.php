@@ -79,7 +79,7 @@ class Mcrud extends CI_Model {
         if ($bln == '') {
             $hasil = $str['2'] . "-" . substr($bulan[$str[1]],0,3) . "-" .$str[0];
         }elseif ($bln == 'full') {
-            $hasil = substr($str['2'],1,1) . "-" . $bulan[$str[1]] . "-" .$str[0];
+            $hasil = substr($str['2'],0,2) . "-" . $bulan[$str[1]] . "-" .$str[0];
         }else {
             $hasil = $bulan[$str[1]];
         }

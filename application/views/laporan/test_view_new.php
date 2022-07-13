@@ -123,7 +123,7 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->setCreator(PDF_CREATOR);
 $pdf->setAuthor('Nicola Asuni');
-$pdf->setTitle('TCPDF Example 003');
+$pdf->setTitle('Cetak Laporan');
 $pdf->setSubject('TCPDF Tutorial');
 $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 
@@ -273,6 +273,8 @@ foreach ($array_b as $index=>$val){
                     "deskripsi"=>$valr['deskripsi'],
                     "tanggal"=>$valr['tanggal'],
                     "waktu"=>$valr['waktu'],
+                    "jam_mulai"=>$valr['jam_mulai'],
+                    "jam_selesai"=>$valr['jam_selesai'],
                     "tempat"=>$valr['tempat'],
                     "pakaian"=>$valr['pakaian'],
                     "peserta"=>$valr['peserta'],
@@ -316,7 +318,7 @@ foreach ($array_b as $index=>$val){
                 $pdf->SetFillColor( 255, 255,255);
                 $pdf->setFont('helvetica', '', 9);
                 $pdf->Cell(33, 8, $this->Mcrud->hari_id($valt->tanggal)." / ".$this->Mcrud->tgl_idn($valt->tanggal, 'full') , 1, $ln=0, 'C', 1, '', 0, false, 'A', 'C');
-                $pdf->Cell(30, 8, substr($valt->waktu,0,5), 1, $ln=0, 'C', 1, '', 0, false, 'A', 'C');
+                $pdf->Cell(30, 8, substr($valt->jam_mulai,0,5)."-".substr($valt->jam_selesai,0,5), 1, $ln=0, 'C', 1, '', 0, false, 'A', 'C');
                 $pdf->Cell(50, 8, $valt->nama, 1, $ln=0, 'C', 1, '', 0, false, 'A', 'C');
                 $pdf->Cell(42, 8, $valt->tempat, 1, $ln=0, 'C', 1, '', 0, false, 'A', 'C');
                 $pdf->Cell(37, 8, $valt->peserta, 1, $ln=0, 'C', 1, '', 0, false, 'A', 'C');
@@ -353,7 +355,10 @@ $pdf->Ln();
 
 //Close and output PDF document
 //$pdf->Output('example_003.pdf', 'I');
-$pdf->Output('example_003.pdf', 'D');
+$hari_ini = date("Y-m-d");
+$hari_ini_id = $this->Mcrud->tgl_id_new($hari_ini, 'full');
+//$pdf->Output("LaporanAgenda".$hari_ini_id.".pdf", 'I');
+$pdf->Output("CetakLaporanAgenda".$hari_ini_id.".pdf", 'D');
 
 //============================================================+
 // END OF FILE

@@ -26,7 +26,9 @@ class Laporan extends CI_Controller {
             $data['tgl_awal_sql']="kosong";
             $data['tgl_akhir_sql']="kosong";
             $data['id_divisi_selected']="kosong";
-
+            $hari_ini = date("Y-m-d");
+            $data["tgl_now"] = $this->Mcrud->tgl_id_new($hari_ini, 'full');
+            $data['agenda_data'] = $this->Guzzle_model->getAgendaByRangeTanggal($hari_ini, $hari_ini);
             $this->load->view('header', $data);
             $this->load->view("laporan/$p", $data);
             $this->load->view('footer');
@@ -55,8 +57,6 @@ class Laporan extends CI_Controller {
             if($aksi == 'f'){
 
                 $data['filter_date_dari'] = $this->input->post('dari_tgl');
-//                echo $data['filter_date_dari'];
-//                var_dump($data['filter_date_dari']);
                 $data['filter_date_sampai'] = $this->input->post('sampai_tgl');
 
                 //ubah format tgl indo ke tgl sql
@@ -67,7 +67,6 @@ class Laporan extends CI_Controller {
                 $data['id_divisi_selected']=$this->input->post('id_divisi');
                 $data['agenda_data'] = $this->Guzzle_model->getAgendaByRangeTanggal($data['tgl_awal_sql'], $data['tgl_akhir_sql']);
                 $data['laporan_agenda_data'] = $this->Guzzle_model->getAgendaByRangeTanggal($data['tgl_awal_sql'], $data['tgl_akhir_sql']);
-
 
 
                 //awal set tanggal sql

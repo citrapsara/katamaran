@@ -4,12 +4,12 @@ $link2 = strtolower($this->uri->segment(2));
 $link3 = strtolower($this->uri->segment(3));
 $link4 = strtolower($this->uri->segment(4));
 
-$today = date('Y-m-d');
+//$today = date('Y-m-d');
 ?>
 
 <?php
 
-echo $tgl_now = $this->Mcrud->tgl_id_new($today, 'full');
+//echo $tgl_now = $this->Mcrud->tgl_id_new($today, 'full');
 
 ?>
 <main class="main-content bgc-grey-200">
@@ -181,7 +181,7 @@ echo $tgl_now = $this->Mcrud->tgl_id_new($today, 'full');
                                     <?php echo $this->Mcrud->hari_id($dt['tanggal']); ?> / <?php echo $this->Mcrud->tgl_id($dt['tanggal'], 'full'); ?>
                                 </td>
                                 <td style="text-align: center">
-                                    <?php echo $dt['waktu']; ?>
+                                    <?php echo substr($dt['jam_mulai'],0,5) ."-". substr($dt['jam_selesai'],0,5) ; ?>
                                 </td>
                                 <td style="text-align: center">
                                     <?php echo $dt['deskripsi']; ?>
@@ -190,11 +190,16 @@ echo $tgl_now = $this->Mcrud->tgl_id_new($today, 'full');
                                     <?php echo $dt['tempat']; ?>
                                 </td>
                                 <td style="text-align: center">
-                                    <?php if ($dt['url_data_dukung']!=null or $dt['url_data_dukung']!='') { ?>
-                                        <div>Ada Dokumen Data Dukung</div>
-                                    <?php } ?>
-
+                                    <?php echo $dt['peserta']; ?>
                                 </td>
+<!--                                <td style="text-align: center">-->
+<!--                                    --><?php //if($dt["url_data_dukung"]=="null") { ?>
+<!--                                        <div>-</div>-->
+<!--                                    --><?php //} else if($dt["url_data_dukung"]!="null") { ?>
+<!--                                        <div>Ada Dokumen Data Dukung</div>-->
+<!--                                    --><?php //} ?>
+<!---->
+<!--                                </td>-->
                             </tr>
                         <?php } ?>
                         </tbody>
