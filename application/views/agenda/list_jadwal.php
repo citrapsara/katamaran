@@ -4,6 +4,8 @@
   $link3 = $this->uri->segment(3);
   $link4 = $this->uri->segment(4);
   $link5 = $this->uri->segment(5);
+  $level   = $this->session->userdata('level');
+  
 ?>
 
 <main class="main-content bgc-grey-100">
@@ -80,6 +82,7 @@
               </button>
 
               <!-- Button tambah  -->
+              <?php if($level != 'pimti') : ?>
               <button
                 type="button"
                 class="mT-nv-30 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-warning btn-center"
@@ -88,6 +91,7 @@
               >
                 <i class="ti-plus"></i>
               </button>
+              <?php endif; ?>
 
               <!-- Button next -->
               <button
