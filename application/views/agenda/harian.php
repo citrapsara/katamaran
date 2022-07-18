@@ -3,6 +3,7 @@
 <ul class="m-0 p-0">
     <?php 
       $id_user	= $this->session->userdata('id_user');
+      $level	= $this->session->userdata('level');
       if ($agenda != null):
       foreach ($agenda as $row): ?>
     <li class="bdB peers ai-c jc-sb fxw-nw list-jadwal">
