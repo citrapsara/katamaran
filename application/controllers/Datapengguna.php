@@ -58,7 +58,11 @@ class Datapengguna extends CI_Controller {
 					'nama'		=> $nama,
 					'username'	=> $username,
 					'password'	=> $password,
-					'role'		=> $role
+					'role'		=> $role,
+					'whatsapp'		=> 'x',
+					'url_paraf'		=> 'x',
+					'url_ttd'		=> 'x',
+
 				);
 
 				$this->Guzzle_model->createUser($data);
