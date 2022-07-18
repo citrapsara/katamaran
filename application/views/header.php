@@ -136,6 +136,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                 ><span class="title">Kalender</span></a
               >
             </li>
+            <?php if ($level == 'superadmin') : ?>
             <li class="nav-item">
               <a class="sidebar-link" href="<?php if ($level == 'superadmin') {
 									echo "datapengguna/v.html";
@@ -147,6 +148,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                 ><span class="title">Data Pengguna</span></a
               >
             </li>
+            <?php endif; ?>
               <li class="nav-item">
                   <a class="sidebar-link" href="laporan"
                   ><span class="icon-holder"
