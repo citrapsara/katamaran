@@ -102,27 +102,11 @@
             </div>
             <div class="form-group">
               <label class="fw-500">Upload File SK / SP / Nodin / Undangan / Paparan / data pendukung lainnya</label>
-              <?php if ($row['url_data_dukung'] != null): ?>
-              <div class="form-group">
-                <label class="fw-500">File terupload :</label>
-                <ul>
-                  <?php foreach ($this->Mcrud->url_data_dukung($row['url_data_dukung']) as $key => $element): ?>
-                    <li class="remove-file">
-                      <a href="<?php echo $element; ?>" target="blank"><?php echo $element; ?></a> <button class="btn-close remove"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-                  </li>
-                      <?php endforeach; ?>
-                </ul>
-              </div>
-              <?php endif; ?>
-              <button class="btn btn-success mB-10" id="add-more-edit" type="button">
+              <button class="btn btn-success mB-10" id="add-more-edit<?php echo $row['id']; ?>" type="button">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah file
               </button>
               <div id="auth-rows-edit"></div>
             </div>
-            <!-- <div class="form-group">
-              <label class="fw-500">Upload File Baru</label>
-              <input class="form-control border-grey" id="files" type="file" name="files[]" multiple />
-            </div> -->
             
               <div class="text-right">
               <button
@@ -154,13 +138,11 @@
    var currentId = 0;
 
     $("#add-more-edit").click(function(e){
-          
-      var html4 = '<div class="form-group input-dinamis-edit"><div class="row"><div class="col-input-dinamis col-lg-10"><input type="file" name="url_files[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required></div><div class="col-input-dinamis col-lg-2"><button class="btn btn-danger remove-edit" type="button"><i class="fa fa-minus-circle"></i></button></div></div></div>';
-      
-      $('#auth-rows-edit').append(html4);
-      $('#continut' + currentId).ckeditor();
-      currentId += 1;
-    });
+        
+		var html4 = '<div class="form-group input-dinamis"><div class="row"><div class="col-input-dinamis col-lg-10"><input type="file" name="url_files[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required></div><div class="col-input-dinamis col-lg-2"><button class="btn btn-danger remove" type="button"><i class="fa fa-minus-circle"></i></button></div></div></div>';
+    
+    $('#auth-rows-edit').append(html4);
+  });
 
     $('#auth-rows-edit').on('click', '.remove-edit', function(e){
       e.preventDefault();
