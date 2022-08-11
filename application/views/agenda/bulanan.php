@@ -18,7 +18,7 @@
         ><div class="peer mR-15">
           <i class="fa fa-fw fa-clock-o c-green-500"></i>
         </div>
-        <div class="peer">
+        <div class="peer wrap-text-agenda">
           <span class="fw-600"><?php echo $row['nama']; ?></span>
           <div class="c-grey-600">
             <span class="c-grey-700"><?php echo $this->Mcrud->jam($row['jam_mulai']); ?> - </span
