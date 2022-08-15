@@ -21,12 +21,12 @@
                 <tr>
                   <th valign="top" width="160">Jam Mulai</th>
                   <th valign="top" width="1">:</th>
-                  <td><?php echo $row['jam_mulai']; ?></td>
+                  <td><?php echo $this->Mcrud->jam($row['jam_mulai']); ?></td>
                 </tr>
                 <tr>
                   <th valign="top" width="160">Jam Selesai</th>
                   <th valign="top" width="1">:</th>
-                  <td><?php echo $row['jam_selesai']; ?></td>
+                  <td><?php echo $this->Mcrud->jam($row['jam_selesai']); ?></td>
                 </tr>
                 <tr>
                   <th valign="top">Tempat</th>
