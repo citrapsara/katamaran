@@ -25,6 +25,9 @@
           <div class="c-grey-600">
             <span class="c-grey-700"><?php echo $row['pakaian']; ?></span>
           </div>
+          <div class="c-grey-600">
+            <span class="c-grey-700"><?php echo $row['peserta']; ?></span>
+          </div>
         </div>
       </a>
       <div class="peers mR-15">
