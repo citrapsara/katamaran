@@ -1,7 +1,8 @@
 <ul class="m-0 p-0 ">
   <?php 
     $ceks 	 = $this->session->userdata('token_katamaran');
-
+    $id_user	= $this->session->userdata('id_user');
+    $level	= $this->session->userdata('level');
     if ($agenda != null):
       $temp = '1996-01-01'; ?>
   <div class="bgc-blue-50 c-blue-500 p-10"></div>
