@@ -7,8 +7,16 @@ class Guzzle_model extends CI_model {
 
     public function __construct()
     {
-        $userID = $this->session->userdata('id_user');
-        $token = $this->session->userdata('token_katamaran');
+        $ceks 	 = $this->session->userdata('token_katamaran');
+
+		if(!isset($ceks)) {
+			$userID = 1;
+            $token = 'a';
+		} else {
+            $userID = $this->session->userdata('id_user');
+            $token = $this->session->userdata('token_katamaran');
+		}
+        
 
         $this->_client = new Client([
             'base_uri' => 'localhost/katamaranapi/index.php/',

@@ -1,5 +1,8 @@
 <ul class="m-0 p-0">
-  <?php if ($agenda != null):
+  <?php
+    $ceks 	 = $this->session->userdata('token_katamaran');
+
+    if ($agenda != null):
       $temp = '1996-01-01'; ?>
       <div class="bgc-blue-50 c-blue-500 p-10"></div>
   <?php foreach ($agenda as $row):
@@ -30,7 +33,9 @@
         </div></a
       >
       <div class="peers mR-15">
-        <?php if($level == 'superadmin' OR $level == 'sekpim' OR $row['id_user'] == $id_user): ?>
+        <?php 
+          if(isset($ceks)):        
+          if($level == 'superadmin' OR $level == 'sekpim' OR $row['id_user'] == $id_user): ?>
         <div class="peer">
           <a
             href=""
@@ -49,7 +54,7 @@
             ><i class="ti-trash"></i
           ></a>
         </div>
-        <?php endif; ?>
+        <?php endif; endif; ?>
       </div>
     </li>
     <?php endforeach;

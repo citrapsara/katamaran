@@ -2,6 +2,7 @@
 <div class="p-10"></div>
 <ul class="m-0 p-0">
     <?php 
+      $ceks 	 = $this->session->userdata('token_katamaran');
       $id_user	= $this->session->userdata('id_user');
       $level	= $this->session->userdata('level');
       if ($agenda != null):
@@ -27,7 +28,9 @@
         </div>
       </a>
       <div class="peers mR-15">
-        <?php if($level == 'superadmin' OR $level == 'sekpim' OR $row['id_user'] == $id_user): ?>
+        <?php
+          if(isset($ceks)): 
+          if($level == 'superadmin' OR $level == 'sekpim' OR $row['id_user'] == $id_user): ?>
         <div class="peer">
           <a
             href=""
@@ -46,7 +49,7 @@
             ><i class="ti-trash"></i
           ></a>
         </div>
-        <?php endif; ?>
+        <?php endif; endif; ?>
       </div>
     </li>
     <?php endforeach;

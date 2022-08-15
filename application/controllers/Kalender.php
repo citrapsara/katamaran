@@ -5,11 +5,6 @@ class Kalender extends CI_Controller {
 
 	public function index()
 	{
-		$ceks = $this->session->userdata('token_katamaran');
-		$id_user = $this->session->userdata('id_user');
-		if(!isset($ceks)) {
-			redirect('web/login');
-		}else{
 			$data['judul_web'] = "Kalender";
 
 			date_default_timezone_set('Asia/Singapore');
@@ -23,8 +18,6 @@ class Kalender extends CI_Controller {
 			$this->load->view('header', $data);
 			$this->load->view('kalender', $data);
 			$this->load->view('footer');
-
-		}
 	}
 
 }

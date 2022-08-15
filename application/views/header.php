@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+$ceks 	 = $this->session->userdata('token_katamaran');
 $username   = $this->session->userdata('username');
 $level   = $this->session->userdata('level');
 $nama	= $this->session->userdata('nama');
@@ -136,7 +137,8 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                 ><span class="title">Kalender</span></a
               >
             </li>
-            <?php if ($level == 'superadmin') : ?>
+            <?php if (isset($ceks)) :
+              if ($level == 'superadmin') : ?>
             <li class="nav-item">
               <a class="sidebar-link" href="<?php if ($level == 'superadmin') {
 									echo "datapengguna/v.html";
@@ -148,7 +150,8 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                 ><span class="title">Data Pengguna</span></a
               >
             </li>
-            <?php endif; ?>
+            <?php endif; endif; ?>
+            <?php if (isset($ceks)) : ?>
               <li class="nav-item">
                   <a class="sidebar-link" href="laporan"
                   ><span class="icon-holder"
@@ -156,6 +159,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                       ><span class="title">Laporan</span></a
                   >
               </li>
+            <?php endif; ?>
           </ul>
         </div>
       </div>
@@ -173,32 +177,11 @@ $sub_menu3 = strtolower($this->uri->segment(3));
               </li>
             </ul>
             <ul class="nav-right">
-              <!-- <li class="notifications dropdown">
-                <span class="counter bgc-red">3</span>
-                <a
-                  href=""
-                  class="dropdown-toggle no-after"
-                  data-toggle="dropdown"
-                  ><i class="ti-bell"></i
-                ></a>
-                <ul class="dropdown-menu">
-                  <li class="pX-20 pY-15 bdB">
-                    <i class="ti-bell pR-10"></i>
-                    <span class="fsz-sm fw-600 c-grey-900">Notifications</span>
-                  </li>
-                  <li>
-                    <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
-                    </ul>
-                  </li>
-                  <li class="pX-20 pY-15 ta-c bdT">
-                    <span
-                      ><a href="" class="c-grey-600 cH-blue fsz-sm td-n"
-                        >View All Notifications
-                        <i class="ti-angle-right fsz-xs mL-10"></i></a
-                    ></span>
-                  </li>
-                </ul>
-              </li> -->
+              <?php if (!isset($ceks)) : ?>
+                <div class="div-login-button">
+                  <a href="web/login" class="btn btn-primary btn-block">Login</a>
+                </div>
+              <?php else: ?>
               <li class="dropdown">
                 <a
                   href=""
@@ -229,6 +212,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                   </li>
                 </ul>
               </li>
+              <?php endif; ?>
             </ul>
           </div>
         </div>

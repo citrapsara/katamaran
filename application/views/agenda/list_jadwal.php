@@ -1,4 +1,5 @@
 <?php 
+  $ceks 	 = $this->session->userdata('token_katamaran');
   $link1 = $this->uri->segment(1);
   $link2 = $this->uri->segment(2);
   $link3 = $this->uri->segment(3);
@@ -82,7 +83,8 @@
               </button>
 
               <!-- Button tambah  -->
-              <?php if($level != 'pimti') : ?>
+              <?php if(isset($ceks)) :
+              if($level != 'pimti') : ?>
               <button
                 type="button"
                 class="mT-nv-30 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-warning btn-center"
@@ -91,7 +93,7 @@
               >
                 <i class="ti-plus"></i>
               </button>
-              <?php endif; ?>
+              <?php endif; endif; ?>
 
               <!-- Button next -->
               <button

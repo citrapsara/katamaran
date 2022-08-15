@@ -20,9 +20,9 @@ class Agenda extends CI_Controller {
 		$id_user = $this->session->userdata('id_user');
 		$level 	 = $this->session->userdata('level');
 
-		if(!isset($ceks)) {
-			redirect('web/login');
-		}
+		// if(!isset($ceks)) {
+		// 	redirect('web/login');
+		// }
 
 		date_default_timezone_set('Asia/Singapore');
 		$data['time_now'] = date('H:i');
@@ -35,6 +35,10 @@ class Agenda extends CI_Controller {
 		));
 		
 		if ($aksi == 't') {
+			if(!isset($ceks)) {
+				redirect('web/login');
+			}
+
 			$nama = $this->input->post('nama');
 			$tanggal = $this->input->post('tanggal');
 			$jam_mulai = $this->input->post('jam_mulai');
@@ -130,6 +134,10 @@ class Agenda extends CI_Controller {
 			redirect("agenda/v/harian/" . $tanggal_convert);
 
 		} elseif ($aksi == 'e') {
+			if(!isset($ceks)) {
+				redirect('web/login');
+			}
+
 			$id_agenda = $this->input->post('id_agenda');
 			$nama = $this->input->post('nama');
 			$tanggal = $this->input->post('tanggal');
@@ -185,6 +193,10 @@ class Agenda extends CI_Controller {
 			}
 			redirect("agenda/v/harian/" . $tanggal_convert);
 		} elseif ($aksi == 'h') {
+			if(!isset($ceks)) {
+				redirect('web/login');
+			}
+
 			$id_agenda = $this->input->post('id_agenda');
 			$cek_data = $this->Guzzle_model->getAgendaById($id_agenda);
 
