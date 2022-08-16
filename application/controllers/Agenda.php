@@ -57,6 +57,8 @@ class Agenda extends CI_Controller {
 				mkdir($lokasi, 0777, $rekursif = true);
 			}
 
+			echo '<pre>'; print_r($_FILES['url_files']); exit;
+
 			if ($_FILES['url_files']['name'][0] == null) {
 				$count = 0;
 			} else {
@@ -153,8 +155,53 @@ class Agenda extends CI_Controller {
 			$tanggal_convert = date('Y-m-d', strtotime($tanggal));
 			
 			$pesan = '';
-			$simpan = 'y';
+
+			if (!is_dir($lokasi)) {
+				# jika tidak maka folder harus dibuat terlebih dahulu
+				mkdir($lokasi, 0777, $rekursif = true);
+			}
+
+			// echo '<pre>'; print_r($_FILES['url_files']['name'][0]); exit;
+
+			if ($_FILES['url_files_edit']['name'][0] == null) {
+				$count = 0;
+			} else {
+				$count = count($_FILES['url_files_edit']['name']);
+			}
+
+			if($count != 0) {
+				for($i=0;$i<$count;$i++){
+				
+					if(!empty($_FILES['url_files_edit']['name'][$i])){
+				
+					$_FILES['file']['name'] = $_FILES['url_files_edit']['name'][$i];
+					$_FILES['file']['type'] = $_FILES['url_files_edit']['type'][$i];
+					$_FILES['file']['tmp_name'] = $_FILES['url_files_edit']['tmp_name'][$i];
+					$_FILES['file']['error'] = $_FILES['url_files_edit']['error'][$i];
+					$_FILES['file']['size'] = $_FILES['url_files_edit']['size'][$i];
+	
+					if ( ! $this->upload->do_upload('file'))
+						{
+							$simpan = 'n';
+							$pesan  = htmlentities(strip_tags($this->upload->display_errors('<p>', '</p>')));
+						}
+						else
+						{
+							$gbr = $this->upload->data();
+							$filename = "$lokasi/".$gbr['file_name'];
+							$url_file[$i] = preg_replace('/ /', '_', $filename);
+							$simpan = 'y';
+						}
+					}
+				}
+				$url_data_dukung = json_encode($url_file);
+			} else {
+				$url_data_dukung = $data_lama['url_data_dukung'];
+				$simpan = 'y';
+			}
+
 			
+
 			if ($simpan == 'y') {
 			$data = array(
 				'nama'			=> $nama,
@@ -164,7 +211,8 @@ class Agenda extends CI_Controller {
 				'tempat'		=> $tempat,
 				'peserta'		=> $peserta,
 				'pakaian'		=> $pakaian,
-				'deskripsi'		=> $deskripsi
+				'deskripsi'		=> $deskripsi,
+				'url_data_dukung'	=> $url_data_dukung
 			);
 
 			$this->Guzzle_model->updateAgenda($id_agenda, $data);

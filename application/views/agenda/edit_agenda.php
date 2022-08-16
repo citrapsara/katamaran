@@ -5,7 +5,7 @@
       <div class="modal-content">
         <div class="bd p-15"><h5 class="m-0">Ubah Agenda Kegiatan</h5></div>
         <div class="modal-body">
-          <form method="POST" action="agenda/v/e">
+          <form method="POST" action="agenda/v/e" enctype="multipart/form-data">
             <input type="hidden" value="<?php echo $row['id']; ?>" name="id_agenda" />
             <div class="form-group">
               <label class="fw-500" for="nama">Nama Kegiatan</label>
@@ -102,10 +102,10 @@
             </div>
             <div class="form-group">
               <label class="fw-500">Upload File SK / SP / Nodin / Undangan / Paparan / data pendukung lainnya</label>
-              <button class="btn btn-success mB-10" id="add-more-edit<?php echo $row['id']; ?>" type="button">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah file
+              <button class="btn btn-success mB-10" id="add-more-edit-<?php echo $row['id']; ?>" type="button">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Ubah file
               </button>
-              <div id="auth-rows-edit"></div>
+              <div id="auth-rows-edit-<?php echo $row['id']; ?>"></div>
             </div>
             
               <div class="text-right">
@@ -130,21 +130,19 @@
   </div>
 <?php endforeach; ?>
     
-
-
 <script type="text/javascript">
-    $('.clockpicker').clockpicker();
+  $('.clockpicker').clockpicker();
 
-   var currentId = 0;
+  var currentId = 0;
 
-    $("#add-more-edit").click(function(e){
+  $("[id^='add-more-edit-']").click(function(e){
         
-		var html4 = '<div class="form-group input-dinamis"><div class="row"><div class="col-input-dinamis col-lg-10"><input type="file" name="url_files[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required></div><div class="col-input-dinamis col-lg-2"><button class="btn btn-danger remove" type="button"><i class="fa fa-minus-circle"></i></button></div></div></div>';
+		var html4 = '<div class="form-group input-dinamis-edit"><div class="row"><div class="col-input-dinamis-edit col-lg-10"><input type="file" name="url_files_edit[]" class="form-control border-grey" id="peserta" placeholder="Upload file" required></div><div class="col-input-dinamis-edit col-lg-2"><button class="btn btn-danger remove-edit" type="button"><i class="fa fa-minus-circle"></i></button></div></div></div>';
     
-    $('#auth-rows-edit').append(html4);
+    $("[id^='auth-rows-edit-']").append(html4);
   });
 
-    $('#auth-rows-edit').on('click', '.remove-edit', function(e){
+    $("[id^='auth-rows-edit-']").on('click', '.remove-edit', function(e){
       e.preventDefault();
       $(this).parents('.input-dinamis-edit').remove(); 
     });
