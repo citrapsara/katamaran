@@ -6,74 +6,17 @@ class Web extends CI_Controller {
 
 	public function index()
 	{
-		// $ceks = $this->session->userdata('token_katamaran');
-		// if(isset($ceks)) {
-		// 	// $this->load->view('404_content');
-		// 	redirect('dashboard');
-		// }else{ 
-		// 	redirect('web/login');
-		// }
 		redirect('agenda/v/harian');
 		
 	}
-
-	// public function v($aksi='',$tanggal='',$tanggal2='')
-	// {
-	// 	if ($aksi == 'harian') {
-	// 		$p = 'list_jadwal';
-
-	// 		if ($tanggal == '') {
-	// 			$data['header_hari'] = $today;
-	// 		} else {
-	// 			$data['header_hari'] = $tanggal;
-	// 		}
-			
-	// 		$data['agenda'] = $this->Guzzle_model->getAgendaByTanggal($data['header_hari']);
-	// 	} elseif ($aksi == 'mingguan') {
-	// 		$p = 'list_jadwal';
-
-	// 		if ($tanggal == '' AND $tanggal2 == '') {
-	// 			$data['header_hari1'] = date("Y-m-d", strtotime("Monday this week"));
-	// 			$data['header_hari2'] = date("Y-m-d", strtotime("Sunday this week"));
-	// 			$data['agenda'] = $this->Guzzle_model->getAgendaMingguIni();
-	// 		} else {
-	// 			$data['header_hari1'] = $tanggal;
-	// 			$data['header_hari2'] = $tanggal2;
-	// 			$data['agenda'] = $this->Guzzle_model->getAgendaByRangeTanggal($tanggal, $tanggal2);
-	// 		}
-	// 	} elseif ($aksi == 'bulanan') {
-	// 		$p = 'list_jadwal';
-
-	// 		if ($tanggal == '' AND $tanggal2 == '') {
-	// 			$data['header_bulan'] = $this->Mcrud->bulan_id($today);
-	// 			$data['header_tahun'] = date('Y', strtotime($today));
-	// 			$data['agenda'] = $this->Guzzle_model->getAgendaBulanIni();
-	// 		} else {
-	// 			$data['header_bulan'] = $this->Mcrud->bulan_id($tanggal);
-	// 			$data['header_tahun'] = date('Y', strtotime($tanggal));
-	// 			$data['agenda'] = $this->Guzzle_model->getAgendaByRangeTanggal($tanggal, $tanggal2);
-	// 		}
-	// 	}
-	// 	else{
-	// 		$p = "list_jadwal";
-	// 	}
-
-	// 	$this->load->view('header', $data);
-	// 	$this->load->view("agenda/$p", $data);
-	// 	$this->load->view('footer');
-	// }
 
 	public function login()
 	{
 		$ceks = $this->session->userdata('token_katamaran');
 		if(isset($ceks)) {
-			// $this->load->view('404_content');
 			redirect('dashboard');
 		}else{
 			$data['judul_web'] = "Halaman Login - ".$this->Mcrud->judul_web();
-			// $this->load->view('log/header', $data);
-			// $this->load->view('log/login', $data);
-			// $this->load->view('log/footer', $data);
 			$this->load->view('log/signin', $data);
 
 			if (isset($_POST['btnlogin'])){
@@ -145,7 +88,7 @@ class Web extends CI_Controller {
          $this->session->sess_destroy();
 		}
 
-		redirect('web/login');
+		redirect('agenda/v/harian');
 	}
 
 	function error_not_found(){
