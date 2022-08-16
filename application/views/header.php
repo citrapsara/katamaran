@@ -94,6 +94,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
       });
     </script>
     <div>
+      <?php if (isset($ceks)): ?>
       <div class="sidebar">
         <div class="sidebar-inner">
           <div class="sidebar-logo">
@@ -163,10 +164,12 @@ $sub_menu3 = strtolower($this->uri->segment(3));
           </ul>
         </div>
       </div>
-      <div class="page-container">
-        <div class="header navbar">
+      <?php endif; ?>
+      <div class="<?php if (isset($ceks)) { echo "page-container"; } ?>">
+        <div class="header <?php if (!isset($ceks)) { echo "header-front-home";} ?> navbar">
           <div class="header-container">
             <ul class="nav-left">
+              <?php if (isset($ceks)): ?>
               <li>
                 <a
                   id="sidebar-toggle"
@@ -175,6 +178,24 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                   ><i class="ti-menu"></i
                 ></a>
               </li>
+              <?php else: ?>
+                <div class="peers ai-c fxw-nw">
+                  <div class="peer peer-greed">
+                    <a class="sidebar-link td-n" href="index.html"
+                      ><div class="peers ai-c fxw-nw">
+                        <div class="peer">
+                          <div class="logo">
+                            <img src="assets/agenda/assets/static/images/logo1.png" alt="" />
+                          </div>
+                        </div>
+                        <div class="peer peer-greed">
+                          <h5 class="lh-1 mB-0 logo-text">KATAMARAN</h5>
+                        </div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              <?php endif; ?>
             </ul>
             <ul class="nav-right">
               <?php if (!isset($ceks)) : ?>
