@@ -112,8 +112,7 @@
               </button>
               <button
                 class="btn btn-success cur-p"
-                name=""
-              >
+                name="">
                 Simpan
               </button>
             </div>

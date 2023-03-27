@@ -9,7 +9,7 @@
 			      <table class="table table-bordered table-striped" width="100%">
               <tbody>
                 <tr>
-                  <th valign="top" width="160">Nama Kegiatan</th>
+                  <th valign="top" width="160">Nama Kegiatanz</th>
                   <th valign="top" width="1">:</th>
                   <td><?php echo $row['nama']; ?></td>
                 </tr>

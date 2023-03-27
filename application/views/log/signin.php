@@ -91,11 +91,9 @@
       >
         <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
         <form class="validate-form" action="" method="post">
-          <?php
-							echo $this->session->flashdata('msg');
-						?>
+          <?php	echo $this->session->flashdata('msg');	?>
           <div class="form-group validate-input" data-validate = "Username is required">
-            <label class="text-normal text-dark">Username</label>
+            <label class="text-normal text-dark">Usernamez</label>
             <input type="text" class="form-control" placeholder="Username" name="username" required/>
           </div>
           <div class="form-group validate-input" data-validate = "Password is required">
@@ -124,6 +122,7 @@
                 </div>
               </div> -->
               <!-- <div class="peer"> -->
+              <!--btnlogin dikirim dan terbaca pada controller Web.php -->
                 <button class="btn btn-primary" name="btnlogin" type="submit">Login</button>
               <!-- </div>
             </div> -->

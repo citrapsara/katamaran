@@ -7,12 +7,15 @@ class Web extends CI_Controller {
 	public function index()
 	{
 		redirect('agenda/v/harian');
+//        echo "tess";
 		
 	}
 
 	public function login()
 	{
+
 		$ceks = $this->session->userdata('token_katamaran');
+		echo "ini session token_katamaran".$ceks;
 		if(isset($ceks)) {
 			redirect('dashboard');
 		}else{
@@ -23,12 +26,14 @@ class Web extends CI_Controller {
 				$username = htmlentities(strip_tags($_POST['username']));
 				$pass	   = htmlentities(strip_tags($_POST['password']));
 
+//                $strip_tags = strip_tags($_POST['username']);
 				$data = array(
 					'username' 	=> $username,
 					'password'	=> $pass
 				);
 
 				try {
+				    //menandakan pemanggilan API
 					$client = new Client([
 						'base_uri' => 'localhost/katamaranapi/index.php/',
 						'headers' => [
@@ -42,10 +47,12 @@ class Web extends CI_Controller {
 						'json' => $data
 					]);
 
+//					echo $response->getStatusCode();
 					if (200 == $response->getStatusCode()) {
 						$login_result = json_decode($response->getBody()->getContents(), true);
 					}
 				} catch (GuzzleHttp\Exception\ClientException $e) {
+				    //mengambil response dari backend API
 					$response = $e->getResponse();
     				$responseBody = json_decode($response->getBody()->getContents());
 				}
@@ -57,7 +64,8 @@ class Web extends CI_Controller {
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 								  <span aria-hidden="true">&times;</span>
 							  </button>
-							  <strong>"'.$responseBody->message.'"</strong>
+							  <strong>"ini response key message "."'.$responseBody->message.'"</strong><br>
+							  <br><strong>"ini response key status "."'.$responseBody->status.'"</strong>
 						</div>'
 					);
 					redirect('web/login');

@@ -159,6 +159,17 @@ class Guzzle_model extends CI_model {
         return $result;
     }
 
+    public function deleteFile($id, $data)
+    {
+        $response = $this->_client->request('POST', 'Agenda/deleteFile/' . $id, [
+            'json' => $data
+        ]);
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result;
+    }
+
+
+
     public function deleteAgenda($id)
     {
         $response = $this->_client->request('DELETE', 'Agenda/delete/' . $id);

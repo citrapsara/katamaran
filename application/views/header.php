@@ -81,7 +81,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
     <link rel="stylesheet" type="text/css" href="assets/clockpicker-gh-pages/dist/bootstrap-clockpicker.min.css" />
     <script type="text/javascript" src="assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="assets/clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js"></script>
-    
+
   </head>
   <body class="app">
     <div id="loader"><div class="spinner"></div></div>
@@ -154,6 +154,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
             <?php endif; endif; ?>
             <?php if (isset($ceks)) : ?>
               <li class="nav-item">
+                  <!--pada href tersebut yang 'laporan' merupakan nama controller-->
                   <a class="sidebar-link" href="laporan"
                   ><span class="icon-holder"
                       ><i class="c-brown-500 ti-book"></i> </span
@@ -161,6 +162,16 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                   >
               </li>
             <?php endif; ?>
+              <?php if (isset($ceks)) : ?>
+                  <li class="nav-item">
+                      <!--pada href tersebut yang 'laporan' merupakan nama controller-->
+                      <a class="sidebar-link" href="bahan_berita"
+                      ><span class="icon-holder"
+                          ><i class="c-red-500 ti-bookmark"></i> </span
+                          ><span class="title">Bahan Berita</span></a
+                      >
+                  </li>
+              <?php endif; ?>
           </ul>
         </div>
       </div>
@@ -200,7 +211,8 @@ $sub_menu3 = strtolower($this->uri->segment(3));
             <ul class="nav-right">
               <?php if (!isset($ceks)) : ?>
                 <div class="div-login-button">
-                  <a href="web/login" class="btn btn-primary btn-block">Login</a>
+                    <!--ke controller Web lalu function login-->
+                  <a href="web/login" class="btn btn-primary btn-block">Loginz</a>
                 </div>
               <?php else: ?>
               <li class="dropdown">

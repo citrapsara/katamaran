@@ -166,7 +166,7 @@ class Laporan extends CI_Controller {
 //                $this->load->view('laporan/v_report',$data);
 //                $this->load->view('laporan/test_view_pdf',$data);
                 $this->load->view('laporan/test_view_new',$data);
-            }else {
+            } else {
                 $data['tgl_awal_sql']="kosong";
                 $data['tgl_akhir_sql']="kosong";
                 $data['id_divisi']="kosong";

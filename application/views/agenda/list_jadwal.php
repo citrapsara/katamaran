@@ -5,7 +5,7 @@
   $link3 = $this->uri->segment(3);
   $link4 = $this->uri->segment(4);
   $link5 = $this->uri->segment(5);
-  $level   = $this->session->userdata('level');
+  $level = $this->session->userdata('level');
   
 ?>
 
@@ -89,9 +89,8 @@
                 type="button"
                 class="mT-nv-30 pos-a t-2 btn cur-p bdrs-50p p-0 w-3r h-3r btn-warning btn-center"
                 data-toggle="modal"
-                data-target="#add_agenda"
-              >
-                <i class="ti-plus"></i>
+                data-target="#add_agenda">
+                <i class="ti-plus" style="font-weight: bold"></i>
               </button>
               <?php endif; endif; ?>
 
@@ -123,13 +122,12 @@
               >
                 <i class="ti-angle-right"></i>
               </button>
-
               <!-- List Agenda -->
               <?php if ($link3 == 'bulanan') {
                 $this->load->view('agenda/bulanan'); 
               } elseif ($link3 == 'mingguan') {
                 $this->load->view('agenda/mingguan'); 
-              } else {
+              } elseif ($link3 == 'harian') {
                 $this->load->view('agenda/harian'); 
               }
               ?>
